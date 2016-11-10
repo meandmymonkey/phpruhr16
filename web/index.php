@@ -10,13 +10,5 @@ Debug::enable(E_ALL & ~E_NOTICE);
 $container = require_once __DIR__.'/../src/app.php';
 
 $request = Request::createFromGlobals();
-
-$attributes = $container['router']->matchRequest($request);
-$request->attributes->add($attributes);
-
-$response = call_user_func(
-    $container[$attributes['_controller']],
-    $request
-);
-
+$response = $container['kernel']->handle($request);
 $response->send();

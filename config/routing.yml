@@ -1,17 +1,17 @@
 list:
     path: /list.php
     defaults:
-        _controller: controller.legacy
+        _controller: legacy
         _legacy_script: list.php
         
 todo:
     path: /todo.php
     defaults:
-        _controller: controller.legacy
+        _controller: legacy
         _legacy_script: todo.php
         
 test:
     path: /test
     defaults:
-        _controller: controller.test
+        _controller: test
         
