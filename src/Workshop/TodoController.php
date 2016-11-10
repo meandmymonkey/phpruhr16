@@ -27,7 +27,7 @@ class TodoController
             ]
         );
         
-        $id = $request->query->get('id');
+        $id = $request->attributes->get('id');
         
         $result = $db->query('SELECT * FROM todo WHERE id = ' . $id);
         $todo = $result->fetch(\PDO::FETCH_ASSOC);

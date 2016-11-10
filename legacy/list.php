@@ -64,7 +64,7 @@ $count  = current($result->fetch(\PDO::FETCH_ASSOC));
 
             echo '<tr>';
             echo '  <td class="center">'. $todo['id'] .'</td>';
-            echo '  <td><a href="todo.php?id='. $todo['id'] .'">'. $todo['title'] .'</a></td>';
+            echo '  <td><a href="'. $router->generate('todo', ['id' => $todo['id']]) .'">'. $todo['title'] .'</a></td>';
             echo '  <td class="center">';
 
             if ($todo['is_done']) {

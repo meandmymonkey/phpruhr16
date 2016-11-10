@@ -1,12 +1,12 @@
 list:
-    path: /list.php
+    path: /
     defaults:
         _controller: legacy
         _action: indexAction
         _legacy_script: list.php
         
 todo:
-    path: /todo.php
+    path: /todo/{id}
     defaults:
         _controller: todo
         _action: todoAction

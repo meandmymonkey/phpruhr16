@@ -1,6 +1,7 @@
 <?php
 
 use Pimple\Container;
+use Symfony\Bridge\Twig\Extension\RoutingExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -57,11 +58,12 @@ $container['twig'] = function() use ($container) {
         $loader,
         [
             'cache' => __DIR__.'/../cache/twig',
-            'debug' => true
+            'debug' => true,
+            'strict_variables' => true
         ]
     );
     
-    $twig->addGlobal('router', $container['router']);
+    $twig->addExtension(new RoutingExtension($container['router']));
     
     return $twig;
 };
