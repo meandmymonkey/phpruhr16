@@ -3,7 +3,11 @@
     "type": "project",
     "require": {
         "symfony/debug": "^3.1",
-        "symfony/http-foundation": "^3.1"
+        "symfony/http-foundation": "^3.1",
+        "symfony/routing": "^3.1",
+        "symfony/yaml": "^3.1",
+        "symfony/config": "^3.1",
+        "pimple/pimple": "^3.0"
     },
     "autoload": {
         "psr-4": {"": "src/"}
