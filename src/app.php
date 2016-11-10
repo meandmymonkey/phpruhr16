@@ -21,7 +21,7 @@ $container['router'] = function() use ($container) {
         new YamlFileLoader($locator),
         'routing.yml',
         [
-            'cache_dir' => __DIR__.'/../cache',
+            'cache_dir' => __DIR__.'/../cache/router',
             'debug' => true
         ]
     );
@@ -50,14 +50,30 @@ $container['kernel'] = function() use ($container) {
 };
 
 
+$container['twig'] = function() use ($container) {
+    $loader = new Twig_Loader_Filesystem(__DIR__.'/../templates');
+    $twig = new Twig_Environment(
+        $loader,
+        [
+            'cache' => __DIR__.'/../cache/twig',
+            'debug' => true
+        ]
+    );
+    
+    return $twig;
+};
+
+
 $container['controller.legacy'] = function() use ($container) {
     return new Wrapper(__DIR__.'/../legacy', $container);
 };
 
 
 $container['controller.test'] = function() use ($container) {
-    return function() {
-        return new Response('test');
+    return function() use ($container) {
+        return new Response(
+            $container['twig']->render('test.html.twig')
+        );
     };
 };
 
