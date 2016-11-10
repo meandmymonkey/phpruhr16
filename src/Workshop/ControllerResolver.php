@@ -24,12 +24,13 @@ class ControllerResolver implements ControllerResolverInterface#
     public function getController(Request $request)
     {
         $serviceId = self::PREFIX.$request->attributes->get('_controller');
+        $action = $request->attributes->get('_action');
         
         if (!isset($this->container[$serviceId])) {
             return false;
         }
         
-        return $this->container[$serviceId];
+        return [$this->container[$serviceId], $action];
     }
 
     public function getArguments(Request $request, $controller)

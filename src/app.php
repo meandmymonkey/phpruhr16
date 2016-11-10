@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Routing\Router;
 use Workshop\ControllerResolver;
 use Workshop\Legacy\Wrapper;
+use Workshop\TodoController;
 
 $container = new Container();
 
@@ -60,6 +61,8 @@ $container['twig'] = function() use ($container) {
         ]
     );
     
+    $twig->addGlobal('router', $container['router']);
+    
     return $twig;
 };
 
@@ -69,12 +72,8 @@ $container['controller.legacy'] = function() use ($container) {
 };
 
 
-$container['controller.test'] = function() use ($container) {
-    return function() use ($container) {
-        return new Response(
-            $container['twig']->render('test.html.twig')
-        );
-    };
+$container['controller.todo'] = function() use ($container) {
+    return new TodoController($container);
 };
 
 

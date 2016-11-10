@@ -22,7 +22,7 @@ class Wrapper
         $this->container = $container;
     }
 
-    public function __invoke(Request $request)
+    public function indexAction(Request $request)
     {
         $legacyScript = $this->legacyBasePath
             .DIRECTORY_SEPARATOR
